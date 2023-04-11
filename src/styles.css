@@ -1,0 +1,131 @@
+body {
+  font-family: "Raleway", sans-serif;
+}
+
+.container {
+  border-radius: 10px;
+  border: 1px solid rgba(199, 215, 182, 0.3);
+  background: rgba(199, 215, 182, 0.3);
+}
+
+h1 {
+  text-align: center;
+  font-size: 20px;
+  margin-top: -20px;
+}
+
+.header {
+  text-align: center;
+  margin: 28px 15px;
+}
+.location {
+  border: 1px solid black;
+  border-radius: 50px;
+  background: rgba(120, 123, 120, 0.2);
+  padding: 1px;
+  box-shadow: 0px 6px 20px 1px rgba(0, 0, 0, 0.2);
+  transition: all 200ms ease-in-out;
+}
+
+.location:hover {
+  background: rgba(193, 208, 223, 0.9);
+  color: white;
+}
+
+.fa-regular.fa-compass {
+  text-align: center;
+  margin: 10px;
+}
+
+.location-form {
+  border: 1px solid black;
+  border-radius: 20px;
+  background: rgba(132, 185, 246, 0.2);
+  padding: 2px 70px;
+  box-shadow: 0px 6px 20px 1px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.search {
+  border: 1px solid rgba(120, 123, 120, 0.2);
+  border-radius: 20px;
+  background: rgba(120, 123, 120, 0.2);
+  transition: all 200ms ease-in-out;
+  box-shadow: 0px 6px 20px 1px rgba(0, 0, 0, 0.2);
+}
+
+.search:hover {
+  color: white;
+  background: rgba(76, 139, 211, 0.7);
+}
+
+.current-weather {
+  font-size: 25px;
+  text-align: right;
+  margin: -141px -70px;
+  padding: 0px 103px;
+}
+
+.current-weather-icon {
+  font-size: 40px;
+}
+
+.city {
+  font-size: 28px;
+  margin: 42px 0px 40px;
+  padding-left: 34px;
+}
+
+.city-temperature {
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 125px 30px 20px 28px;
+  font-size: 18px;
+}
+
+i {
+  padding: 2px;
+  margin: 10px;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.75),
+    rgba(0, 0, 0, 0)
+  );
+  margin: 40px;
+}
+
+.forecast-container {
+  font-size: 25px;
+  margin: 40px 30px;
+}
+
+.forecast {
+  margin: 40px 30px;
+  background: rgba(205, 224, 187, 0.5);
+  border: 1px solid rgba(205, 224, 187, 0.5);
+  border-radius: 20px;
+}
+
+.forecast i {
+  font-size: 38px;
+}
+
+.temperatures {
+  font-size: 17px;
+  text-align: center;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
