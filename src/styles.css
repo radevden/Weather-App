@@ -64,12 +64,16 @@ h1 {
 .current-weather {
   font-size: 25px;
   text-align: right;
-  margin: -163px -70px;
+  margin: -197px -70px;
   padding: 0px 103px;
 }
 
-.current-weather-icon {
-  font-size: 40px;
+.weather-icon {
+  width: 30%;
+}
+
+.description-hilow {
+  margin-top: -25px;
 }
 
 .city {
@@ -95,7 +99,7 @@ h1 {
 ul {
   list-style: none;
   padding: 0;
-  margin: 175px 30px 20px 28px;
+  margin: 210px 30px 20px 28px;
   font-size: 18px;
 }
 

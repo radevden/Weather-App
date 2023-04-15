@@ -22,24 +22,6 @@ const hoursAndMinutes = now.toLocaleTimeString("default", {
   minute: "numeric",
 });
 
-let tempValue = document.querySelector(".temperature-value");
-
-function tempCelsius(event) {
-  event.preventDefault();
-  tempValue.innerHTML = 20;
-}
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", tempCelsius);
-
-function tempFahrenheit(event) {
-  event.preventDefault();
-  tempValue.innerHTML = 68;
-}
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", tempFahrenheit);
-
 function updateWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let cityTemperature = document.querySelector(".temperature-value");
@@ -145,3 +127,24 @@ celsiusUnit.addEventListener("click", showCelsius);
 let fahrenheitUnit = document.querySelector("#fahrenheit");
 fahrenheitUnit.addEventListener("click", showFahrenheit);
 let celsiusTemp = null;
+
+function updateIcon(response) {
+  let iconWeather = document.querySelector("#weather-icon");
+  iconWeather.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+}
+
+function selectIcon(event) {
+  event.preventDefault();
+
+  let locationInput = document.querySelector(".location-form");
+  let city = locationInput.value;
+
+  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(updateIcon);
+}
+let searchForm = document.querySelector("#search-form");
+searchForm.addEventListener("submit", selectIcon);
