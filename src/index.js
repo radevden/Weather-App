@@ -71,6 +71,8 @@ function updateWeather(response) {
   let visibility = Math.round(response.data.visibility / 1000);
   let visibilityCity = document.querySelector(".visibility");
   visibilityCity.innerHTML = `${visibility}`;
+
+  celsiusTemp = response.data.main.temp;
 }
 
 function showMyPosition(position) {
@@ -115,3 +117,31 @@ function changeLocation(event) {
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", changeLocation);
+
+function showCelsius(event) {
+  event.preventDefault();
+
+  celsiusUnit.classList.add("active");
+  fahrenheitUnit.classList.remove("active");
+
+  let temperatureValue = document.querySelector(".temperature-value");
+  temperatureValue.innerHTML = Math.round(celsiusTemp);
+}
+
+function showFahrenheit(event) {
+  event.preventDefault();
+
+  celsiusUnit.classList.remove("active");
+  fahrenheitUnit.classList.add("active");
+
+  let fahrenheitValue = document.querySelector(".temperature-value");
+  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
+  fahrenheitValue.innerHTML = Math.round(fahrenheitTemp);
+}
+
+let celsiusUnit = document.querySelector("#celsius");
+celsiusUnit.addEventListener("click", showCelsius);
+
+let fahrenheitUnit = document.querySelector("#fahrenheit");
+fahrenheitUnit.addEventListener("click", showFahrenheit);
+let celsiusTemp = null;
