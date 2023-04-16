@@ -22,6 +22,15 @@ const hoursAndMinutes = now.toLocaleTimeString("default", {
   minute: "numeric",
 });
 
+function getForecast(coordinates) {
+  console.log(coordinates);
+
+  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
+
 function updateWeather(response) {
   let temperature = Math.round(response.data.main.temp);
   let cityTemperature = document.querySelector(".temperature-value");
@@ -55,6 +64,8 @@ function updateWeather(response) {
   visibilityCity.innerHTML = `${visibility}`;
 
   celsiusTemp = response.data.main.temp;
+
+  getForecast(response.data.coord);
 }
 
 function showMyPosition(position) {
@@ -149,7 +160,8 @@ function selectIcon(event) {
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", selectIcon);
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastElement = document.querySelector("#forecast-container");
 
   let days = ["Thu", "Fri", "Sat", "Sun"];
@@ -176,5 +188,3 @@ function displayForecast() {
   forecastHTML = forecastHTML + `</div>`;
   forecastElement.innerHTML = forecastHTML;
 }
-
-displayForecast();
