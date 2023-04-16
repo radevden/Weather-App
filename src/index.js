@@ -148,3 +148,33 @@ function selectIcon(event) {
 }
 let searchForm = document.querySelector("#search-form");
 searchForm.addEventListener("submit", selectIcon);
+
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast-container");
+
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+      <div class="col-2">
+        <div class="forecast-day">${day}</div>
+          <img 
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png" 
+              alt=""
+              width="60px"
+          />
+            <div class="forecast-temperatures">
+              <span class="forecast-max-temp"></span> °C
+              <span class="forecast-min-temp"></span> °C
+            </div>
+      </div>
+    `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
+displayForecast();
