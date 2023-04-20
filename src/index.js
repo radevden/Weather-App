@@ -22,11 +22,53 @@ const hoursAndMinutes = now.toLocaleTimeString("default", {
   minute: "numeric",
 });
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast-container");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 5) {
+      forecastHTML =
+        forecastHTML +
+        `
+      <div class="col-2">
+        <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
+          <img 
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" 
+              id="weather-forecast-icon"
+              alt=""
+              width="60px"
+          />
+            <div class="forecast-temperatures">
+              <span class="forecast-max-temp">${Math.round(
+                forecastDay.temp.max
+              )}</span> °C
+              <span class="forecast-min-temp">${Math.round(
+                forecastDay.temp.min
+              )}</span> °C
+            </div>
+      </div>
+    `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+
 function getForecast(coordinates) {
   console.log(coordinates);
 
-  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=${apiKey}&units=metric`;
+  let apiKey = "667d9f573c8af4c33457be5d561a9148";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -72,7 +114,7 @@ function showMyPosition(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
 
-  let apiKey = "2360ab6e16992a97a3513a031995a2ff";
+  let apiKey = "667d9f573c8af4c33457be5d561a9148";
   let apiLink = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiLink}?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
   axios
@@ -97,7 +139,7 @@ function changeLocation(event) {
   let locationInput = document.querySelector(".location-form");
   let city = locationInput.value;
 
-  let apiKey = "2360ab6e16992a97a3513a031995a2ff";
+  let apiKey = "667d9f573c8af4c33457be5d561a9148";
   let apiLink = "https://api.openweathermap.org/data/2.5/weather";
   let apiUrl = `${apiLink}?q=${city}&appid=${apiKey}&units=metric`;
   axios
@@ -147,6 +189,25 @@ function updateIcon(response) {
   );
 }
 
+function updateForecastIcon(response) {
+  let forecastIcon = document.querySelector("#weather-forecast-icon");
+  forecastIcon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
+}
+
+function selectForecastIcon(event) {
+  event.preventDefault();
+
+  let locationInput = document.querySelector(".location-form");
+  let city = locationInput.value;
+
+  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(updateForecastIcon);
+}
+
 function selectIcon(event) {
   event.preventDefault();
 
@@ -158,33 +219,4 @@ function selectIcon(event) {
   axios.get(apiUrl).then(updateIcon);
 }
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", selectIcon);
-
-function displayForecast(response) {
-  console.log(response.data.daily);
-  let forecastElement = document.querySelector("#forecast-container");
-
-  let days = ["Thu", "Fri", "Sat", "Sun"];
-
-  let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-      <div class="col-2">
-        <div class="forecast-day">${day}</div>
-          <img 
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png" 
-              alt=""
-              width="60px"
-          />
-            <div class="forecast-temperatures">
-              <span class="forecast-max-temp"></span> °C
-              <span class="forecast-min-temp"></span> °C
-            </div>
-      </div>
-    `;
-  });
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
+searchForm.addEventListener("submit", selectIcon, selectForecastIcon);
