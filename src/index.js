@@ -193,7 +193,7 @@ function updateIcon(response) {
 
 function updateForecastIcon(response) {
   let forecastIcon = document.querySelector(".forecast-icon");
-  forecastIcon.setAttribute("src", `${response.data.daily.condition.icon_url}`);
+  forecastIcon.setAttribute("src", `${response.data.condition.icon_url}`);
 }
 
 function selectForecastIcon(event) {
