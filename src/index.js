@@ -36,25 +36,27 @@ function displayForecast(response) {
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
-    if (index < 5) {
+    if (index < 6) {
       forecastHTML =
         forecastHTML +
         `
-      <div class="col-2">
+        <div class="col-2">
         <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
           <img 
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/rain-day.png" 
-              id="weather-forecast-icon"
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+              id="forecast-icon"
+              class="forecast-icon"
               alt=""
               width="60px"
           />
             <div class="forecast-temperatures">
-              <span class="forecast-max-temp">${Math.round(
-                forecastDay.temp.max
-              )}</span> °C
-              <span class="forecast-min-temp">${Math.round(
-                forecastDay.temp.min
-              )}</span> °C
+             <span class="forecast-min-temp">${Math.round(
+               forecastDay.temp.min
+             )}</span> °C 
+             <br />
+             <span class="forecast-max-temp">${Math.round(
+               forecastDay.temp.max
+             )}</span> °C
             </div>
       </div>
     `;
@@ -82,7 +84,7 @@ function updateWeather(response) {
   newCity.innerHTML = response.data.name;
 
   let weatherDescription = response.data.weather[0].description;
-  let description = document.querySelector("#description");
+  let description = document.querySelector(".description");
   description.innerHTML = `${weatherDescription}`;
 
   let humidity = response.data.main.humidity;
@@ -190,11 +192,8 @@ function updateIcon(response) {
 }
 
 function updateForecastIcon(response) {
-  let forecastIcon = document.querySelector("#weather-forecast-icon");
-  forecastIcon.setAttribute(
-    "src",
-    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
-  );
+  let forecastIcon = document.querySelector(".forecast-icon");
+  forecastIcon.setAttribute("src", `${response.data.daily.condition.icon_url}`);
 }
 
 function selectForecastIcon(event) {

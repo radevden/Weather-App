@@ -79,16 +79,13 @@ h1 {
   margin: -20px 37px;
 }
 
-.description-hilow {
+.description {
   margin-top: 5px;
-  margin-right: 65px;
+  margin-right: 80px;
   font-size: 22px;
   position: relative;
 }
 
-.description {
-  margin: 0 12px;
-}
 .high-low {
   margin: 70px 68px;
   font-size: 18px;
@@ -192,4 +189,28 @@ a.signature {
 
 .active:hover {
   cursor: default;
+}
+
+.container-days {
+  width: 85%;
+  display: block;
+  margin: 0 auto;
+  margin: 50px 30px;
+  padding: 20px 10px;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 7px;
+  border: 1px solid linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.col-2 {
+  padding: 0 15px;
+}
+
+.forecast-day {
+  text-align: center;
+}
+
+.forecast-temperatures {
+  text-align: center;
+  font-size: 14px;
 }
