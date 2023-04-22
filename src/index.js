@@ -51,14 +51,14 @@ function displayForecast(response) {
               alt="${forecastDay.condition.icon}"
               width="60px"
           />
-            <div class="forecast-temperatures">
-             <span class="forecast-min-temp">${Math.round(
-               forecastDay.temperature.minimum
-             )}</span> °C 
-             <br />
+            <div class="forecast-temperatures"> 
              <span class="forecast-max-temp">${Math.round(
                forecastDay.temperature.maximum
-             )}</span> °C
+             )} °C</span>
+             <br />
+             <span class="forecast-min-temp">${Math.round(
+               forecastDay.temperature.minimum
+             )} °C</span>
             </div>
       </div>
     `;
@@ -106,9 +106,9 @@ function updateWeather(response) {
   let windCity = document.querySelector(".wind");
   windCity.innerHTML = `${wind}`;
 
-  let visibility = Math.round(response.data.visibility / 1000);
-  let visibilityCity = document.querySelector(".visibility");
-  visibilityCity.innerHTML = `${visibility}`;
+  let feelsLike = Math.round(response.data.main.feels_like);
+  let feelsLikeCity = document.querySelector(".feels-like");
+  feelsLikeCity.innerHTML = `${feelsLike}`;
 
   celsiusTemp = response.data.main.temp;
 
