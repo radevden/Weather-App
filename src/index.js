@@ -41,21 +41,23 @@ function displayForecast(response) {
         forecastHTML +
         `
         <div class="col-2">
-        <div class="forecast-day">${formatDay(forecastDay.dt)}</div>
+        <div class="forecast-day">${formatDay(forecastDay.time)}</div>
           <img 
-              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/few-clouds-day.png"
+              src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastDay.condition.icon
+              }.png"
               id="forecast-icon"
               class="forecast-icon"
-              alt=""
+              alt="${forecastDay.condition.icon}"
               width="60px"
           />
             <div class="forecast-temperatures">
              <span class="forecast-min-temp">${Math.round(
-               forecastDay.temp.min
+               forecastDay.temperature.minimum
              )}</span> °C 
              <br />
              <span class="forecast-max-temp">${Math.round(
-               forecastDay.temp.max
+               forecastDay.temperature.maximum
              )}</span> °C
             </div>
       </div>
@@ -66,11 +68,12 @@ function displayForecast(response) {
   forecastElement.innerHTML = forecastHTML;
 }
 
-function getForecast(coordinates) {
-  console.log(coordinates);
+function getForecast(position) {
+  let city = position;
 
-  let apiKey = "667d9f573c8af4c33457be5d561a9148";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
+
   console.log(apiUrl);
   axios.get(apiUrl).then(displayForecast);
 }
@@ -109,7 +112,7 @@ function updateWeather(response) {
 
   celsiusTemp = response.data.main.temp;
 
-  getForecast(response.data.coord);
+  getForecast(response.data.name);
 }
 
 function showMyPosition(position) {
@@ -191,22 +194,6 @@ function updateIcon(response) {
   );
 }
 
-function updateForecastIcon(response) {
-  let forecastIcon = document.querySelector(".forecast-icon");
-  forecastIcon.setAttribute("src", `${response.data.condition.icon_url}`);
-}
-
-function selectForecastIcon(event) {
-  event.preventDefault();
-
-  let locationInput = document.querySelector(".location-form");
-  let city = locationInput.value;
-
-  let apiKey = "e1c36520c14f56fa74b8fob3tcc313d4";
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(updateForecastIcon);
-}
-
 function selectIcon(event) {
   event.preventDefault();
 
@@ -218,4 +205,4 @@ function selectIcon(event) {
   axios.get(apiUrl).then(updateIcon);
 }
 let searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", selectIcon, selectForecastIcon);
+searchForm.addEventListener("submit", selectIcon);
