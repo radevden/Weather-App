@@ -16,6 +16,9 @@ let hours = now.getHours();
 let minutes = now.getMinutes();
 
 h1.innerHTML = `${day} <br />${hours}:${minutes}`;
+if ((hours, minutes < 10)) {
+  h1.innerHTML = `${day} <br />0${hours}:0${minutes}`;
+}
 
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);

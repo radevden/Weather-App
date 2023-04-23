@@ -199,15 +199,25 @@ a.signature {
   width: 85%;
   display: block;
   margin: 0 auto;
-  margin: 35px 40px;
-  padding: 20px 10px;
+  margin: 35px 48px;
+  padding: 10px 20px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   border-radius: 7px;
   border: 1px solid linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+.row {
+  flex-wrap: nowrap;
+  margin-left: -19px;
+  margin-right: -6px;
+  margin: -6px -6px -6px -19px;
+}
+
 .col-2 {
-  padding: 0 15px;
+  padding: 20px 10px;
+  border: 1px solid #dce3ee;
+  border-radius: 8px;
+  margin: 0 1px;
 }
 
 .forecast-day {
