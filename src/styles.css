@@ -16,15 +16,16 @@ h1 {
   margin-top: 15px;
 }
 
+.header {
+  text-align: center;
+  margin: 25px 0px -25px 0;
+}
+
 .search-form {
   display: block;
   margin: 0 auto;
 }
 
-.header {
-  text-align: center;
-  margin: 25px 0px -25px 0;
-}
 .location {
   border: 1px solid black;
   border-radius: 50px;
@@ -35,7 +36,7 @@ h1 {
 }
 
 .location:hover {
-  background: rgba(193, 208, 223, 0.9);
+  background: #c4d0e3;
   color: white;
 }
 
@@ -68,7 +69,7 @@ h1 {
 
 .search:hover {
   color: white;
-  background: rgba(76, 139, 211, 0.7);
+  background: #c4d0e3;
 }
 
 .current-weather {
