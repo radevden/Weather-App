@@ -17,11 +17,6 @@ let minutes = now.getMinutes();
 
 h1.innerHTML = `${day} <br />${hours}:${minutes}`;
 
-const hoursAndMinutes = now.toLocaleTimeString("default", {
-  hour: "numeric",
-  minute: "numeric",
-});
-
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
@@ -157,34 +152,6 @@ function changeLocation(event) {
 
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", changeLocation);
-
-function showCelsius(event) {
-  event.preventDefault();
-
-  celsiusUnit.classList.add("active");
-  fahrenheitUnit.classList.remove("active");
-
-  let temperatureValue = document.querySelector(".temperature-value");
-  temperatureValue.innerHTML = Math.round(celsiusTemp);
-}
-
-function showFahrenheit(event) {
-  event.preventDefault();
-
-  celsiusUnit.classList.remove("active");
-  fahrenheitUnit.classList.add("active");
-
-  let fahrenheitValue = document.querySelector(".temperature-value");
-  let fahrenheitTemp = (celsiusTemp * 9) / 5 + 32;
-  fahrenheitValue.innerHTML = Math.round(fahrenheitTemp);
-}
-
-let celsiusUnit = document.querySelector("#celsius");
-celsiusUnit.addEventListener("click", showCelsius);
-
-let fahrenheitUnit = document.querySelector("#fahrenheit");
-fahrenheitUnit.addEventListener("click", showFahrenheit);
-let celsiusTemp = null;
 
 function updateIcon(response) {
   let iconWeather = document.querySelector("#weather-icon");

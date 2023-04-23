@@ -1,5 +1,5 @@
 body {
-  font-family: "Raleway", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .container {
@@ -12,13 +12,18 @@ body {
 
 h1 {
   text-align: center;
-  font-size: 20px;
-  margin-top: -20px;
+  font-size: 17px;
+  margin-top: 15px;
+}
+
+.search-form {
+  display: block;
+  margin: 0 auto;
 }
 
 .header {
   text-align: center;
-  margin: 28px 15px;
+  margin: 25px 0px -25px 0;
 }
 .location {
   border: 1px solid black;
@@ -36,7 +41,7 @@ h1 {
 
 .fa-regular.fa-compass {
   text-align: center;
-  margin: 10px;
+  margin: 8px;
 }
 
 .location-form {
@@ -47,10 +52,9 @@ h1 {
     rgb(241, 241, 242) 0.1%,
     rgb(224, 226, 228) 100.2%
   );
-  padding: 8px 100px;
+  padding: 5px 186px;
   box-shadow: 0px 6px 20px 1px rgba(0, 0, 0, 0.2);
   text-align: center;
-  margin: 0;
 }
 
 .search {
@@ -59,7 +63,7 @@ h1 {
   background: rgba(120, 123, 120, 0.2);
   transition: all 200ms ease-in-out;
   box-shadow: 0px 6px 20px 1px rgba(0, 0, 0, 0.2);
-  padding: 8px 15px;
+  padding: 5px 10px;
 }
 
 .search:hover {
@@ -92,7 +96,7 @@ h1 {
 }
 
 .low {
-  margin: 0 5px;
+  margin-right: 9px;
 }
 
 .city {
@@ -101,8 +105,12 @@ h1 {
   padding-left: 34px;
 }
 
-.city-temperature {
-  font-weight: bold;
+.celsius {
+  font-size: 20px;
+  font-weight: 300;
+  position: relative;
+  top: -24px;
+  left: -8px;
 }
 
 .temperature-value {
@@ -145,7 +153,7 @@ hr {
     rgba(0, 0, 0, 0.75),
     rgba(0, 0, 0, 0)
   );
-  margin: 40px;
+  margin: 30px;
 }
 
 .forecast-container {
@@ -183,23 +191,14 @@ a {
 a.signature {
   font-weight: bold;
   color: black;
-}
-
-.active {
-  color: black;
-  cursor: default;
-  font-weight: bold;
-}
-
-.active:hover {
-  cursor: default;
+  opacity: 0.7;
 }
 
 .container-days {
   width: 85%;
   display: block;
   margin: 0 auto;
-  margin: 50px 30px;
+  margin: 35px 40px;
   padding: 20px 10px;
   background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
   border-radius: 7px;

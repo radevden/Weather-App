@@ -20,22 +20,19 @@
 </head>
 
 <body>
+  <div class="header">
+    <form id="search-form">
+      <button class="location">
+        <i class="fa-regular fa-compass"></i>
+      </button>
+      <input class="location-form" type="text" placeholder=" Type a location..." />
+      <button class="search">
+        search
+      </button>
+    </form>
+  </div>
   <div class="container">
-    <div class="header">
-      <form id="search-form">
-        <button class="location">
-          <i class="fa-regular fa-compass"></i>
-        </button>
-        <input class="location-form" type="text" placeholder=" Type a location..." />
-        <button class="search">
-          search
-        </button>
-      </form>
-    </div>
-    <h1>
-
-      <div class="current-time"></div>
-    </h1>
+    <h1 class="current-time"></h1>
     <div class="city">
       <span class="city-name">
         City
@@ -44,14 +41,7 @@
         <span class="temperature-value">
           20
         </span>
-        <span class="unit-value">
-          <a href="" id="celsius" class="active">
-            °C
-          </a> |
-          <a href="" id="fahrenheit">
-            °F
-          </a>
-        </span>
+        <span class="celsius">°C</span>
       </div>
     </div>
     <div class="current-weather">
@@ -63,8 +53,8 @@
       </p>
       <br />
       <div class="high-low">
-        <span class="high">High: <span class="max">23</span>°C</span><br /><span class="low">Low: <span
-            class="min">15</span>°C</span>
+        <span class="high">High: <span class="max">23</span>°C</span>
+        <div class="low">Low: <span class="min">15</span>°C</div>
       </div>
     </div>
     <ul>
